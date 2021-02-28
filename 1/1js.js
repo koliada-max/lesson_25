@@ -1,35 +1,39 @@
 
-
-const startDistance = parseInt(
-    prompt("please enter a distance"),
-);
-const car = {
+const myCar = {
     brand: "hundai",
     model: "tucson",
     year: 2021,
-    speed: 120,
-    info: function () {
-        console.log(`tehnical information about car: ${car.brand, car.model, car.year, car.speed}`)
+    averageSpeed: 100,
+    calculateTripTime: function (distance) {
+        const result = distance / this.averageSpeed;
+        if (result > 4) {
+            const correction = Math.trunc(result / 5);
+            return result + correction;
+        }
+        return result;
     },
-    
-    timeForDistance: function (distance) {
-        let result = distance / car.speed;
-        let rest = 0;
-        result = Math.trunc(rest) + (((rest - (Math.trunc(result))) * 60) / 100)
-        for (let hour = 1; hour <= result; hour++) {
-            if (hour % 5 == 0) {
-                rest++;
-                result++;
-            }
-        }
-        result = result.toFixed(2).split(".");
-        if (rest == 0) {
-            console.log(`if you whant overcome this distance : ${startDistance} km., you must - ${result[0]}h. ${result[1]}m. And you don’t need rest.`);
-        } else {
-            console.log(`if you whant overcome this distance : ${startDistance} km., you must - ${result[0]}h. ${result[1]}m., So you need rest: ${rest}h.`);
-        }
-    }
-}
+    printTripTime: function (distance) {
+        console.log(
+        this.calculateTripTime(distance),
+        );
+    },
+        printCarInfo: function () {
+          console.log(
+            "Model: " + this.model + "\n",
+            "Barnd: " + this.brand + "\n",
+            "Year: " + this.year + "\n",
+          );
+        },
+      };
+      myCar.printTripTime(
+        parseInt(
+          prompt("Enter distance"),
+        ),
+      );
+      myCar.printTripTime(800);
+      myCar.printCarInfo();
+      
+  
 
 
 
